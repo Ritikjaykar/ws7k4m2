@@ -111,6 +111,11 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/")
+def root():
+    return {"service": "Wind Signal API", "status": "ok", "docs": "/docs", "health": "/api/health"}
+
+
 @app.get("/api/wind")
 def wind(start: date = Query(date(2026, 1, 1)), end: date = Query(date(2026, 1, 31))):
     return build(start.isoformat(), end.isoformat())
